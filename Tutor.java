@@ -18,16 +18,20 @@ public class Tutor extends JPanel {
     public void changeState(int newState) {
 	// Set the state to the new state and set the correct file
         state = newState;
-	File file1= new File("P" + state + ".html");
+	    if (state != 0)
+	    {
+		    
+		File file1= new File("P" + state + ".html");
 
-	try {
-	        HtmlPane.setPage(file1.toURI().toURL());
-	}
+		try {
+	        	HtmlPane.setPage(file1.toURI().toURL());
+		}
 
-	catch (IOException ex) {
-	    JOptionPane.showMessageDialog(null,"Could not setPage ", "TITLE", JOptionPane.WARNING_MESSAGE);
-            ex.printStackTrace();
-	}
+		catch (IOException ex) {
+	    	JOptionPane.showMessageDialog(null,"Could not setPage ", "TITLE", JOptionPane.WARNING_MESSAGE);
+            	ex.printStackTrace();
+		}
+	    }
 	remove(myName);
 	add(HtmlPane);    
     }
