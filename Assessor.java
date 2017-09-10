@@ -17,8 +17,10 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Assessor extends JPanel implements ActionListener, ItemListener {
-	int state = 0; //state of assessor panel
+	//initialize state
+	int state = 0;
 	
+	//instantiate all possible panel components
 	JLabel nameLabel = new JLabel("Dalton Scott");
 	
 	JLabel questionLabel = new JLabel("Question 1");
@@ -37,7 +39,10 @@ public class Assessor extends JPanel implements ActionListener, ItemListener {
 	JTextField textField = new JTextField(16);
 	
 	public Assessor() {
+		//JPanel constructor
 		super();
+		
+		//set default states for components and add listeners
 		dropDownMenu.setSelectedIndex(0);
 		dropDownMenu.addActionListener(this);
 		
@@ -54,44 +59,57 @@ public class Assessor extends JPanel implements ActionListener, ItemListener {
 		
 		textField.addActionListener(this);
 		
+		//add name label by default
 		add(nameLabel);
 	}
 	
 	public void changeState(int changeTo) {
+		//reset panel
 		removeAll();
+		
+		//change state
 		state = changeTo;
+		
+		//change question label to current question
 		questionLabel.setText("Question " + Integer.toString(state));
 		add(questionLabel);
 		if (state == 1) {
+			//add drop down menu
 			add(dropDownMenu);
 		}
 		else
 		if (state == 2) {
+			//add all check boxes
 			add(checkBox1);
 			add(checkBox2);
 			add(checkBox3);
 		}
 		else
 		if (state == 3) {
+			//add all buttons
 			add(button1);
 			add(button2);
 			add(button3);
 		}
 		else
 		if (state == 4) {
+			//add text field
 			add(textField);
 		}
 	}
 	
 	public void popUp(String message, String title) {
+		//show dialog box with given message and title, as information message
 		JOptionPane.showMessageDialog(null, message, title, JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		//show a message that says "Hello World!" with title "Simple Output"
 		popUp("Hello World!", "Simple Output");
 	}
 	
 	public void itemStateChanged(ItemEvent i) {
+		//show a message that says "Hello World!" with title "Simple Output"
 		popUp("Hello World!", "Simple Output");
 	}
 }
