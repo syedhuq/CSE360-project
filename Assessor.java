@@ -10,6 +10,7 @@
 
 
 //package srcc; //package declaration, used only for Eclipse
+package edu.asu.CSE360._03._05;
 
 import javax.swing.*;
 import java.io.*;
@@ -96,6 +97,8 @@ public class Assessor extends JPanel implements ActionListener, ItemListener {
 			//add text field
 			add(textField);
 		}
+		revalidate();
+		repaint();
 	}
 	
 	public void popUp(String message, String title) {
