@@ -1,3 +1,15 @@
+/**
+* Universe displays a GUI with Assessor, Companion, and Tutor panels, it will update each panel depending on the state of a slider.
+* Recitation Project 1
+* Completion time: 2 hours
+*
+* @author Bryce Turner
+* @version 1.0
+*/
+
+
+package edu.asu.CSE360._03._05;
+
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.SwingConstants;
