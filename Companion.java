@@ -8,7 +8,7 @@
 */
 
 
-package edu.asu.CSE360._03._05;
+package edu.asu.CSE360._03._03;
 
 
 import javax.swing.*;
@@ -31,10 +31,10 @@ public class Companion extends JPanel
 		add(label);
 
 		// creating icons for each image, retrieving from path
-		icon1 = new ImageIcon(getClass().getResource("resources/happy.png"));
-		icon2 = new ImageIcon(getClass().getResource("resources/thinking.png"));
-		icon3 = new ImageIcon(getClass().getResource("resources/worried.png"));
-		icon4 = new ImageIcon(getClass().getResource("resources/sorry.png"));
+		icon1 = new ImageIcon(getClass().getResource("/resources/happy.png"));
+		icon2 = new ImageIcon(getClass().getResource("/resources/thinking.png"));
+		icon3 = new ImageIcon(getClass().getResource("/resources/worried.png"));
+		icon4 = new ImageIcon(getClass().getResource("/resources/sorry.png"));
 		
 	}
 	
