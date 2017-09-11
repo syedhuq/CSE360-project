@@ -12,7 +12,6 @@ package edu.asu.CSE360._03._03;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JEditorPane;
-import javax.swing.JOptionPane;
 import java.io.*;
 
 public class Tutor extends JPanel {
@@ -20,6 +19,8 @@ public class Tutor extends JPanel {
     int state = 0;
     JLabel myName  = new JLabel("Nathan Nikan");
     JEditorPane HtmlPane= new JEditorPane();
+    File file1;
+    String filename;
 
     public Tutor() {
 	// Initial state of displaying name.
@@ -29,10 +30,13 @@ public class Tutor extends JPanel {
     public void changeState(int newState) {
 	// Set the state to the new state and set the correct file
         state = newState;
+    	remove(myName);
 	    if (state != 0)
 	    {
 		    
-		File file1= new File("resources/P" + state + ".html");
+	    	//File file1= new File("/resources/P" + state + ".html");
+	    	filename = "src/resources/P" + state + ".html";
+	    	file1 = new File(filename);
 
 		try {
 	        	HtmlPane.setPage(file1.toURI().toURL());
@@ -43,7 +47,6 @@ public class Tutor extends JPanel {
 			ex.printStackTrace();
 		}
 	    }
-	remove(myName);
 	add(HtmlPane);    
     }
 
