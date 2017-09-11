@@ -10,11 +10,9 @@
 
 
 //package srcc; //package declaration, used only for Eclipse
-package edu.asu.CSE360._03._05;
+package edu.asu.CSE360._03._03;
 
 import javax.swing.*;
-import java.io.*;
-import java.awt.*;
 import java.awt.event.*;
 
 public class Assessor extends JPanel implements ActionListener, ItemListener {
