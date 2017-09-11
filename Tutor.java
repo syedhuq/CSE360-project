@@ -38,9 +38,9 @@ public class Tutor extends JPanel {
 	        	HtmlPane.setPage(file1.toURI().toURL());
 		}
 
-		catch (IOException ex) {
-	    	JOptionPane.showMessageDialog(null,"Could not setPage ", "TITLE", JOptionPane.WARNING_MESSAGE);
-            	ex.printStackTrace();
+		catch(IOException ex) {
+			System.err.println("Either the html file for this slider state is named incorrectly or it isn't located in the right folder.");
+			ex.printStackTrace();
 		}
 	    }
 	remove(myName);
