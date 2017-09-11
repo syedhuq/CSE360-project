@@ -20,12 +20,10 @@ public class Universe extends JFrame {
 		
 		//Panel setup
 		a = new Tutor();
-		//b = new Assessor();
-		//c = new Companion();
-		b = new JPanel();
-		c = new JPanel();
+		b = new Assessor();
+		c = new Companion();
 		u = new JPanel(new GridLayout(1,1));
-		uL = new JLabel("Bryce");
+		uL = new JLabel("Bryce Turner");
 		uL.setVerticalAlignment(SwingConstants.TOP);
 		uL.setHorizontalAlignment(SwingConstants.CENTER);
 		u.add(uL);
@@ -73,6 +71,7 @@ public class Universe extends JFrame {
 		public void stateChanged(ChangeEvent event) {
 			updatePanel(slider.getValue());
 			slider.setMinimum(1);	//Removing initial state
+			uL.setVisible(false);	//Hiding universe label
 			
 		}
 	}
