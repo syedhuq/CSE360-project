@@ -1,3 +1,14 @@
+/**
+* Tutor will display one of the html files based on slider position.
+* Recitation Project 1
+* Completion time: 1 hour
+*
+* @author Nathan Nikan
+* @version 1.0
+*/
+
+
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JEditorPane;
@@ -21,7 +32,7 @@ public class Tutor extends JPanel {
 	    if (state != 0)
 	    {
 		    
-		File file1= new File("P" + state + ".html");
+		File file1= new File("resources/P" + state + ".html");
 
 		try {
 	        	HtmlPane.setPage(file1.toURI().toURL());
