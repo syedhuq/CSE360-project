@@ -35,7 +35,7 @@ public class Tutor extends JPanel {
 	    {
 		    
 	    	//File file1= new File("/resources/P" + state + ".html");
-	    	filename = "src/resources/P" + state + ".html";
+	    	filename = "resources/P" + state + ".html";
 	    	file1 = new File(filename);
 
 		try {
