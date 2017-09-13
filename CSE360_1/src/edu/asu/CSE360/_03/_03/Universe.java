@@ -1,7 +1,7 @@
 /**
 * Universe displays a GUI with Assessor, Companion, and Tutor panels, it will update each panel depending on the state of a slider.
 * Recitation Project 1
-* Completion time: 2 hours
+* Completion time: 4 hours
 *
 * @author Bryce Turner
 * @version 1.0
