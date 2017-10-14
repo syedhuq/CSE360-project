@@ -1,14 +1,12 @@
 /**
 * Universe displays a GUI with Assessor, Companion, and Tutor panels, it will update each panel depending on the state of a slider.
-* Recitation Project 1
+* Recitation Project 3
 * Completion time: 2 hours
 *
 * @author Bryce Turner
 * @version 1.0
 */
 
-
-package edu.asu.CSE360._03._03;
 
 import java.awt.*;
 import javax.swing.*;
@@ -18,7 +16,8 @@ import javax.swing.event.*;
 public class Universe extends JFrame {
 	
 	//Initializing components
-	private JPanel a, b, c, u, north, south;
+	private JPanel a, c, u, north, south;
+	private Subject b;
 	private JLabel uL;
 	private JSlider slider;
 
@@ -33,7 +32,7 @@ public class Universe extends JFrame {
 		//Panel setup
 		a = new Tutor();
 		b = new Assessor();
-		c = new Companion();
+		c = new Companion(b);
 		u = new JPanel(new GridLayout(1,1));
 		uL = new JLabel("Bryce Turner");
 		uL.setVerticalAlignment(SwingConstants.TOP);
@@ -62,7 +61,7 @@ public class Universe extends JFrame {
 		//Adding panels to frame and setting size
 		add(north, BorderLayout.CENTER);
 		add(south, BorderLayout.SOUTH);
-		setSize(512,512);
+		setSize(640,640);
 		setVisible(true);
 	}
 	

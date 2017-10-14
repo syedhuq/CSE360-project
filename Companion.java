@@ -1,14 +1,12 @@
 /**
-* Companion displays one of four animated facial expressions reacting to user inputs.
-* Recitation Project 2
-* Completion time: 5 hours
+* Companion displays one of four animated facial expressions depending on the user's current question score.
+* Recitation Project 3
+* Completion time: 7 hours
 *
 * @author Syed Huq
-* @version 2.0
+* @version 3.0
 */
 
-
-package edu.asu.CSE360._03._03;
 
 
 import javax.swing.*;
@@ -20,11 +18,13 @@ public class Companion extends JPanel
 	JLabel label, name, label2;
 	ImageIcon icon1, icon2, icon3, icon4;
 	int delay, i, j;
+	boolean initial = true;
 	ActionListener animate;
 	
 	// Constructor
-	public Companion()
+	public Companion(Subject subj)
 	{
+		QuestionObserver answers = new QuestionObserver(subj);
 		// my name to be displayed on initial state
 		name = new JLabel("Syed Huq");
 		add(name);
@@ -35,13 +35,13 @@ public class Companion extends JPanel
 		add(label);
 
 		// creating icons for each image, retrieving from path
-		icon1 = new ImageIcon("resources/happy.png");
-		icon2 = new ImageIcon("resources/thinking.png");
-		icon3 = new ImageIcon("resources/worried.png");
-		icon4 = new ImageIcon("resources/sorry.png");
+		icon1 = new ImageIcon("src/main/resources/happy.png");
+		icon2 = new ImageIcon("src/main/resources/thinking.png");
+		icon3 = new ImageIcon("src/main/resources/worried.png");
+		icon4 = new ImageIcon("src/main/resources/sorry.png");
 		
 		// initializing our array of icons for animation
-		ImageIcon[][] icons = new ImageIcon[4][4];
+		final ImageIcon[][] icons = new ImageIcon[4][4];
 		for(int i = 0; i < 4; i++)
 		{
 			switch(i)
@@ -49,25 +49,25 @@ public class Companion extends JPanel
 			case 0: // happy
 				for(int j = 0; j < 4; j++)
 				{
-					icons[i][j] = new ImageIcon("resources/happy" + j + ".png");
+					icons[i][j] = new ImageIcon("src/main/resources/happy" + j + ".png");
 				}//end of happy for loop
 				break;
 			case 1: // thinking
 				for(int j = 0; j < 4; j++)
 				{
-					icons[i][j] = new ImageIcon("resources/thinking" + j + ".png");
+					icons[i][j] = new ImageIcon("src/main/resources/thinking" + j + ".png");
 				}
 				break;
 			case 2: // worried
 				for(int j = 0; j < 4; j++)
 				{
-					icons[i][j] = new ImageIcon("resources/worried" + j + ".png");
+					icons[i][j] = new ImageIcon("src/main/resources/worried" + j + ".png");
 				}
 				break;
 			case 3: // sorry
 				for(int j = 0; j < 4; j++)
 				{
-					icons[i][j] = new ImageIcon("resources/sorry" + j + ".png");
+					icons[i][j] = new ImageIcon("src/main/resources/sorry" + j + ".png");
 				}
 				break;
 			}// end of switch
@@ -87,19 +87,19 @@ public class Companion extends JPanel
 		    	if(test != null) // prevent initial state displays
 		    	{
 		    		// setting first index of icons[][] to select face
-		    		if(test.toString().equals("resources/happy.png"))
+		    		if(test.toString().equals("src/main/resources/happy.png"))
 		    		{
 		    			i = 0;
 		    		}
-		    		else if(test.toString().equals("resources/thinking.png"))
+		    		else if(test.toString().equals("src/main/resources/thinking.png"))
 		    		{
 		    			i = 1; 
 		    		}
-		    		else if(test.toString().equals("resources/worried.png"))
+		    		else if(test.toString().equals("src/main/resources/worried.png"))
 		    		{
 		    			i = 2;
 		    		}
-		    		else if(test.toString().equals("resources/sorry.png"))
+		    		else if(test.toString().equals("src/main/resources/sorry.png"))
 		    		{
 		    			i = 3;
 		    		}
@@ -120,24 +120,36 @@ public class Companion extends JPanel
 		// NOTE: Timer objects will run on a separate thread, so this accomplishes the multithreading requirement
 		new Timer(delay, animate).start();
 	}
-	
 	public void changeState(int state)
 	{
-		
-		// get rid of my name past initial state
 		remove(name);
-		
-		// switch statement to control which image is displayed		
-		// as of project 2, this section is used instead to control program flow for the animation timer
-		// (label2 is not actually displayed, only label)
-		switch(state)
+		if(initial)
 		{
-		case 1: label2.setIcon(icon1); break;
-		case 2: label2.setIcon(icon2); break;
-		case 3: label2.setIcon(icon3); break;
-		case 4: label2.setIcon(icon4); break;
+			label2.setIcon(icon2);
+			initial = false;
 		}
-		
-	}
+	}// end of changeState()
+	
+	public class QuestionObserver extends Observer
+	{
+		public QuestionObserver(Subject subject)
+		{
+		      this.subject = subject;
+		      this.subject.attach(this);
+		}
+		public void update()
+		{
+			int net = subject.getState();
+			if(net > 0)
+				label2.setIcon(icon1);
+			else if(net == 0)
+				label2.setIcon(icon2);
+			else if(net == -1)
+				label2.setIcon(icon3);
+			else
+				label2.setIcon(icon4);
+			
+		}
+	}// end of nested class QuestionObserver
 	
 }

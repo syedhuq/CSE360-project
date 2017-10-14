@@ -10,12 +10,11 @@
 
 
 //package srcc; //package declaration, used only for Eclipse
-package edu.asu.CSE360._03._03;
 
 import javax.swing.*;
 import java.awt.event.*;
 
-public class Assessor extends JPanel implements ActionListener, ItemListener {
+public class Assessor extends Subject implements ActionListener, ItemListener {
 	//initialize state
 	int state = 0;
 	
@@ -72,7 +71,6 @@ public class Assessor extends JPanel implements ActionListener, ItemListener {
 		//add name label by default
 		add(nameLabel);
 	}
-	
 	public void changeState(int changeTo) {
 		//reset panel
 		removeAll();
@@ -221,6 +219,7 @@ public class Assessor extends JPanel implements ActionListener, ItemListener {
 	
 	protected void setNet() {
 		net = correct - incorrect;
+		setState(net);
 	}
 	
 	public int getNet() {
