@@ -10,11 +10,12 @@
 
 
 //package srcc; //package declaration, used only for Eclipse
+package edu.asu.CSE360._03._03;
 
 import javax.swing.*;
 import java.awt.event.*;
 
-public class Assessor extends Subject implements ActionListener, ItemListener {
+public class Assessor extends JPanel implements ActionListener, ItemListener {
 	//initialize state
 	int state = 0;
 	
@@ -71,6 +72,7 @@ public class Assessor extends Subject implements ActionListener, ItemListener {
 		//add name label by default
 		add(nameLabel);
 	}
+	
 	public void changeState(int changeTo) {
 		//reset panel
 		removeAll();
@@ -190,36 +192,40 @@ public class Assessor extends Subject implements ActionListener, ItemListener {
 					if (checkBox2.isSelected() == true) {
 						correct++;
 						answered[1] = true;
+						incorrect += attempts[1]/2;
 						aboutAnswer = correctString;
 						setNet();
 						popUp(aboutAnswer, "About your answer...");	
 					}
 				}
 			}
-			else {
-				incorrect++;
-				attempts[1] += 1;
-				if (attempts[1] >= 2) {
-					answered[1] = true;
-				}
-				aboutAnswer = incorrectString;
-				if (incorrect >= 6) {
-					aboutAnswer += warningString1;
-					aboutAnswer += Integer.toString(9-incorrect);
-					aboutAnswer += warningString2;
-					if (incorrect >= 9) {
-						aboutAnswer += "\nYou have failed this quiz!";
+			else 
+			if (i.getSource() == checkBox3) {
+				if (checkBox3.isSelected() == true) {
+					checkBox3.setSelected(false);
+					attempts[1] += 1;				
+					if (attempts[1] >= 4) {
+						answered[1] = true;
+						incorrect += 2;
 					}
+					aboutAnswer = incorrectString;
+					if (incorrect >= 6) {
+						aboutAnswer += warningString1;
+						aboutAnswer += Integer.toString(9-incorrect);
+						aboutAnswer += warningString2;
+						if (incorrect >= 9) {
+							aboutAnswer += "\nYou have failed this quiz!";
+						}
+					}
+					setNet();
+					popUp(aboutAnswer, "About your answer...");
 				}
-				setNet();
-				popUp(aboutAnswer, "About your answer...");	
 			}
 		}
 	}
 	
 	protected void setNet() {
 		net = correct - incorrect;
-		setState(net);
 	}
 	
 	public int getNet() {
