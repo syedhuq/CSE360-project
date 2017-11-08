@@ -1,12 +1,13 @@
-
-class ControlCenter {
+import java.util.Observable;
+class ControlCenter extends Observable{
 	// static variable single_instance of type Singleton
 	private static ControlCenter single_instance=null;
  
 	public int[] correctAnswers = new int[4];
 	public int[] incorrectAnswers = new int[4];
 	public int[] timeSpent = new int[4];
-
+	public int totalCorrect, totalIncorrect, totalNet;
+	
  
 	private ControlCenter() {
 		for (int i = 0; i < 4; i++) {
@@ -34,20 +35,49 @@ class ControlCenter {
 	public int getTimeSpent (int lessonNumber) {
 		return timeSpent[lessonNumber];
 	}
+	
+	public int getTotalCorrect() {
+		return totalCorrect;
+	}
+	
+	public int getTotalIncorrect() {
+		return totalIncorrect;
+	}
 
-	public setCorrectAnswers (int lessonNumber, int seconds) {
+	public int getTotalNet() {
+		return totalNet;
+	}
+	
+	public void setCorrectAnswers (int lessonNumber, int seconds) {
 		correctAnswers[lessonNumber] = seconds;
 	}
 
-	public setIncorrectAnswers (int lessonNumber, int seconds) {
+	public void setIncorrectAnswers (int lessonNumber, int seconds) {
 		incorrectAnswers[lessonNumber] = seconds;
 	}
 
-	public setTimeSpent (int lessonNumber, int seconds) {
+	public void setTimeSpent (int lessonNumber, int seconds) {
 		timeSpent[lessonNumber] = seconds;
+	}
+	
+	public void setTotalCorrect() {
+		int sum = 0;
+		for(int i : correctAnswers)
+			sum += i;
+		totalCorrect = sum;
+	}
+	
+	public void setTotalIncorrect() {
+		int sum = 0;
+		for(int i : incorrectAnswers)
+			sum += i;
+		totalIncorrect = sum;
+	}
+	
+	public void setTotalNet() {
+		totalNet = totalCorrect - totalIncorrect;
 	}
 
 }
-
 
 
