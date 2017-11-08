@@ -24,6 +24,8 @@ public class Assessor extends JPanel implements ActionListener, ItemListener {
 	
 	JLabel questionLabel = new JLabel("Given an object representing a Student,\nwhich of these would NOT be a possible\nmethod in that class?");
 	
+	JLabel decoLabel = new JLabel("");
+	
 	String[] dropDownChoices = {"Teach", "Turn In Homework", "Sharpen Pencil", "Contact Professor"};
 	JComboBox dropDownMenu = new JComboBox(dropDownChoices);
 	
@@ -35,6 +37,8 @@ public class Assessor extends JPanel implements ActionListener, ItemListener {
 	JButton button3 = new JButton("Parent Class");
 	
 	JTextField textField = new JTextField(16);
+	
+	ControlCenter cc = ControlCenter.ControlCenter();
 	
 	int correct = 0;
 	int incorrect = 0;
@@ -54,7 +58,7 @@ public class Assessor extends JPanel implements ActionListener, ItemListener {
 	Question question4 = new Question(4);
 	
 	QuestionDecorator deco = new QuestionDecorator();
-	
+	MessageDecorator mDeco = new MessageDecorator();
 	public Assessor() {
 		//JPanel constructor
 		super();
@@ -137,11 +141,17 @@ public class Assessor extends JPanel implements ActionListener, ItemListener {
 				String choice = String.valueOf(dropDownMenu.getSelectedItem());
 				if (choice.equals("Teach")) {
 					correct++;
+					cc.setCorrectAnswers(state, cc.getCorrectAnswers(state)+1);
 					aboutAnswer = correctString;
 					answered[state-1] = true;
+					add(decoLabel);
+					mDeco.draw(question1, decoLabel, true);
 				}
 				else {
 					incorrect++;
+					cc.setIncorrectAnswers(state, cc.getInorrectAnswers(state)+1);
+					add(decoLabel);
+					mDeco.draw(question1, decoLabel, false);
 					aboutAnswer = incorrectString;
 					attempts[state-1] += 1;
 					if (attempts[state-1] >= 2) {
@@ -153,11 +163,17 @@ public class Assessor extends JPanel implements ActionListener, ItemListener {
 			if (state == 3) {
 				if (e.getSource() == button3) {
 					correct++;
+					cc.setCorrectAnswers(state, cc.getCorrectAnswers(state)+1);
+					add(decoLabel);
+					mDeco.draw(question3, decoLabel, true);
 					aboutAnswer = correctString;
 					answered[state-1] = true;
 				}
 				else {
 					incorrect++;
+					cc.setIncorrectAnswers(state, cc.getInorrectAnswers(state)+1);
+					add(decoLabel);
+					mDeco.draw(question3, decoLabel, false);
 					aboutAnswer = incorrectString;
 					attempts[state-1] += 1;
 					if (attempts[state-1] >= 2) {
@@ -170,11 +186,17 @@ public class Assessor extends JPanel implements ActionListener, ItemListener {
 			if (state == 4) {
 				if (textField.getText().equals("java")) {
 					correct++;
+					cc.setCorrectAnswers(state, cc.getCorrectAnswers(state)+1);
+					add(decoLabel);
+					mDeco.draw(question4, decoLabel, true);
 					aboutAnswer = correctString;
 					answered[state-1] = true;
 				}
 				else {
 					incorrect++;
+					cc.setIncorrectAnswers(state, cc.getInorrectAnswers(state)+1);
+					add(decoLabel);
+					mDeco.draw(question4, decoLabel, true);
 					aboutAnswer = incorrectString;
 					attempts[state-1] += 1;
 					if (attempts[state-1] >= 3) {
@@ -202,8 +224,12 @@ public class Assessor extends JPanel implements ActionListener, ItemListener {
 				if (checkBox1.isSelected() == true) {
 					if (checkBox2.isSelected() == true) {
 						correct++;
+						cc.setCorrectAnswers(state, cc.getCorrectAnswers(state)+1);
+						add(decoLabel);
+						mDeco.draw(question2, decoLabel, true);
 						answered[1] = true;
 						incorrect += attempts[1]/2;
+						cc.setIncorrectAnswers(state, cc.getInorrectAnswers(state)+attempts[1]/2);
 						aboutAnswer = correctString;
 						setNet();
 						popUp(aboutAnswer, "About your answer...");	
@@ -214,10 +240,14 @@ public class Assessor extends JPanel implements ActionListener, ItemListener {
 			if (i.getSource() == checkBox3) {
 				if (checkBox3.isSelected() == true) {
 					checkBox3.setSelected(false);
-					attempts[1] += 1;				
+					attempts[1] += 1;
+					add(decoLabel);
+					mDeco.draw(question2, decoLabel, false);
 					if (attempts[1] >= 4) {
 						answered[1] = true;
 						incorrect += 2;
+						cc.setIncorrectAnswers(state, cc.getInorrectAnswers(state)+2);
+						
 					}
 					aboutAnswer = incorrectString;
 					if (incorrect >= 6) {
