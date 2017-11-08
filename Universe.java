@@ -1,7 +1,7 @@
 /**
 * Universe displays a GUI with Assessor, Companion, and Tutor panels, it will update each panel depending on the state of a slider.
-* Recitation Project 3
-* Completion time: 2 hours
+* Recitation Project 4
+* Completion time: 3 hours
 *
 * @author Bryce Turner
 * @version 1.0
@@ -18,6 +18,7 @@ public class Universe extends JFrame {
 	//Initializing components
 	private JPanel a, c, u, north, south;
 	private Subject b;
+	private Menu m;
 	private JLabel uL;
 	private JSlider slider;
 
@@ -25,7 +26,7 @@ public class Universe extends JFrame {
 	public Universe() {
 		
 		//JFrame appearance and actions
-		setTitle("Project 1");
+		setTitle("Project 4");
 		setLayout(new BorderLayout());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
@@ -33,6 +34,7 @@ public class Universe extends JFrame {
 		a = new Tutor();
 		b = new Assessor();
 		c = new Companion(b);
+		m = new Menu();
 		u = new JPanel(new GridLayout(1,1));
 		uL = new JLabel("Bryce Turner");
 		uL.setVerticalAlignment(SwingConstants.TOP);
@@ -57,6 +59,7 @@ public class Universe extends JFrame {
 		//Adding components to south panel
 		south = new JPanel(new BorderLayout());
 		south.add(slider, BorderLayout.CENTER);
+		south.add(m, BorderLayout.SOUTH);
 		
 		//Adding panels to frame and setting size
 		add(north, BorderLayout.CENTER);
@@ -75,6 +78,7 @@ public class Universe extends JFrame {
 		((Assessor) b).changeState(s);
 		((Companion) c).changeState(s);
 	}
+	
 
 	//Listener for the JSlider
 	private class SliderListener implements ChangeListener {
@@ -83,7 +87,8 @@ public class Universe extends JFrame {
 			updatePanel(slider.getValue());
 			slider.setMinimum(1);	//Removing initial state
 			uL.setVisible(false);	//Hiding universe label
-			
+			m.SliderValue = slider.getValue();
+			c.setVisible(m.hidec);
 		}
 	}
 }
