@@ -10,11 +10,12 @@
 
 
 //package srcc; //package declaration, used only for Eclipse
+package edu.asu.CSE360._03._03;
 
 import javax.swing.*;
 import java.awt.event.*;
 
-public class Assessor extends Subject implements ActionListener, ItemListener {
+public class Assessor extends JPanel implements ActionListener, ItemListener {
 	//initialize state
 	int state = 0;
 	
@@ -46,6 +47,13 @@ public class Assessor extends Subject implements ActionListener, ItemListener {
 	
 	Boolean[] answered = {false, false, false, false};
 	int[] attempts = {0, 0, 0, 0};
+	
+	Question question1 = new Question(1);
+	Question question2 = new Question(2);
+	Question question3 = new Question(3);
+	Question question4 = new Question(4);
+	
+	QuestionDecorator deco = new QuestionDecorator();
 	
 	public Assessor() {
 		//JPanel constructor
@@ -84,11 +92,13 @@ public class Assessor extends Subject implements ActionListener, ItemListener {
 		if (state == 1) {
 			//add drop down menu
 			add(dropDownMenu);
-			questionLabel.setText("Given an object representing a Student, which of these would NOT be a possible method one could call on that object? (2 attempts)");
+			deco.draw(question1, questionLabel);
+			//questionLabel.setText("Given an object representing a Student, which of these would NOT be a possible method one could call on that object? (2 attempts)");
 		}
 		else
 		if (state == 2) {
-			questionLabel.setText("An operation, or method, must be written with what characteristics? (2 attempts)");
+			deco.draw(question1, questionLabel);
+			//questionLabel.setText("An operation, or method, must be written with what characteristics? (2 attempts)");
 			//add all check boxes
 			add(checkBox1);
 			add(checkBox2);
@@ -96,7 +106,8 @@ public class Assessor extends Subject implements ActionListener, ItemListener {
 		}
 		else
 		if (state == 3) {
-			questionLabel.setText("When a class inherits from another class (other than an interface or abstract class), the inherited class is known as what? (2 attempts)");
+			deco.draw(question1, questionLabel);
+			//questionLabel.setText("When a class inherits from another class (other than an interface or abstract class), the inherited class is known as what? (2 attempts)");
 			//add all buttons
 			add(button1);
 			add(button2);
@@ -104,7 +115,8 @@ public class Assessor extends Subject implements ActionListener, ItemListener {
 		}
 		else
 		if (state == 4) {
-			questionLabel.setText("Type the extension of the file types that go in a package (no capitals, no punctuation or spaces). (3 attempts)");
+			deco.draw(question1, questionLabel);
+			//questionLabel.setText("Type the extension of the file types that go in a package (no capitals, no punctuation or spaces). (3 attempts)");
 			//add text field
 			add(textField);
 		}
@@ -225,7 +237,6 @@ public class Assessor extends Subject implements ActionListener, ItemListener {
 	
 	protected void setNet() {
 		net = correct - incorrect;
-		setState(net);
 	}
 	
 	public int getNet() {
