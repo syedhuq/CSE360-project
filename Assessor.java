@@ -1,16 +1,16 @@
 /**
 * A class that shows a question and can display different ways to answer it.
-* Recitation Project 1
+* Recitation Project 4
 * Completion time: 1 hour
 *
 * @author Dalton Scott
-* @version 1.0
+* @version 2.0
 */
 
 
 
 //package srcc; //package declaration, used only for Eclipse
-//package edu.asu.CSE360._03._03;
+package edu.asu.CSE360._03._03;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -154,7 +154,7 @@ public class Assessor extends JPanel implements ActionListener, ItemListener {
 				}
 				else {
 					incorrect++;
-					cc.setIncorrectAnswers(state, cc.getIncorrectAnswers(state)+1);
+					cc.setIncorrectAnswers(state, cc.getInorrectAnswers(state)+1);
 					add(decoLabel);
 					mDeco.draw(question1, decoLabel, false);
 					aboutAnswer = incorrectString;
@@ -176,7 +176,7 @@ public class Assessor extends JPanel implements ActionListener, ItemListener {
 				}
 				else {
 					incorrect++;
-					cc.setIncorrectAnswers(state, cc.getIncorrectAnswers(state)+1);
+					cc.setIncorrectAnswers(state, cc.getInorrectAnswers(state)+1);
 					add(decoLabel);
 					mDeco.draw(question3, decoLabel, false);
 					aboutAnswer = incorrectString;
@@ -199,7 +199,7 @@ public class Assessor extends JPanel implements ActionListener, ItemListener {
 				}
 				else {
 					incorrect++;
-					cc.setIncorrectAnswers(state, cc.getIncorrectAnswers(state)+1);
+					cc.setIncorrectAnswers(state, cc.getInorrectAnswers(state)+1);
 					add(decoLabel);
 					mDeco.draw(question4, decoLabel, true);
 					aboutAnswer = incorrectString;
@@ -219,11 +219,7 @@ public class Assessor extends JPanel implements ActionListener, ItemListener {
 			}
 			setNet();
 			popUp(aboutAnswer, "About your answer...");
-			
 		}
-	cc.update();
-	System.out.println(cc.countObservers());
-	System.out.println(cc.getTotalNet());
 	}
 	
 	public void itemStateChanged(ItemEvent i) {
@@ -238,7 +234,7 @@ public class Assessor extends JPanel implements ActionListener, ItemListener {
 						mDeco.draw(question2, decoLabel, true);
 						answered[1] = true;
 						incorrect += attempts[1]/2;
-						cc.setIncorrectAnswers(state, cc.getIncorrectAnswers(state)+attempts[1]/2);
+						cc.setIncorrectAnswers(state, cc.getInorrectAnswers(state)+attempts[1]/2);
 						aboutAnswer = correctString;
 						setNet();
 						popUp(aboutAnswer, "About your answer...");	
@@ -255,7 +251,7 @@ public class Assessor extends JPanel implements ActionListener, ItemListener {
 					if (attempts[1] >= 4) {
 						answered[1] = true;
 						incorrect += 2;
-						cc.setIncorrectAnswers(state, cc.getIncorrectAnswers(state)+2);
+						cc.setIncorrectAnswers(state, cc.getInorrectAnswers(state)+2);
 						
 					}
 					aboutAnswer = incorrectString;

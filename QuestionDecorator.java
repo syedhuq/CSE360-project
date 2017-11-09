@@ -1,6 +1,6 @@
 /**
-* A class that shows a question and can display different ways to answer it.
-* Recitation Project 1
+* A class that decorates the current question with a new question.
+* Recitation Project 4
 * Completion time: 1 hour
 *
 * @author Dalton Scott

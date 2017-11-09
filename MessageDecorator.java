@@ -1,6 +1,6 @@
 /**
-* A class that shows a question and can display different ways to answer it.
-* Recitation Project 1
+* A class that decorates a question panel with answer feedback.
+* Recitation Project 4
 * Completion time: 1 hour
 *
 * @author Dalton Scott
