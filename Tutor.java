@@ -1,10 +1,10 @@
 /**
 * Tutor will display one of the html files based on slider position.
-* Recitation Project 1
+* Recitation Project 4
 * Completion time: 1 hour
 *
 * @author Nathan Nikan
-* @version 1.0
+* @version 4.0
 */
 
 package edu.asu.CSE360._03._03;
