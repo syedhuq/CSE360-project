@@ -1,3 +1,12 @@
+/**
+* Singleton will keep a count of both the correct and incorrect answers while keeping track of the time spent on each question.
+* Recitation Project 4
+* Completion time: 2.5 hours
+*
+* @author Nathan Nikan
+* @version 4.0
+*/
+
 import java.util.Observable;
 class ControlCenter extends Observable{
 	// static variable single_instance of type Singleton
