@@ -16,9 +16,11 @@ import java.util.Observable;
 public class Companion extends JPanel implements Observer
 {
 	// Declarations
-	JLabel label, name, label2;
+	JLabel label, name, label2, labelMessage;
 	ImageIcon icon1, icon2, icon3, icon4;
 	ControlCenter cc;
+	CompanionMessage cMessage;
+	CompanionMessageDecorator cMessageDeco;
 	int delay, i, j;
 	boolean initial = true;
 	ActionListener animate;
@@ -32,11 +34,15 @@ public class Companion extends JPanel implements Observer
 		add(name);
 		cc = ControlCenter.ControlCenter();
 		cc.addObserver(this);
+		cMessage = new CompanionMessage();
+		cMessageDeco = new CompanionMessageDecorator();
 		
 		// label will be used to display the image
 		label = new JLabel();
 		label2 = new JLabel();
+		labelMessage = new JLabel();
 		add(label);
+		add(labelMessage);
 
 		// creating icons for each image, retrieving from path
 		icon1 = new ImageIcon("src/main/resources/happy.png");
@@ -139,15 +145,21 @@ public class Companion extends JPanel implements Observer
 		cc.setTotalIncorrect();
 		cc.setTotalNet();
 		int net = cc.getTotalNet();
-		System.out.println("a");
-		if(net > 0)
+		if(net > 0) {
 			label2.setIcon(icon1);
-		else if(net == 0)
+		}
+		else if(net == 0) {
 			label2.setIcon(icon2);
-		else if(net == -1)
+		}
+		else if(net == -1) {
 			label2.setIcon(icon3);
-		else
+		}
+		else {
 			label2.setIcon(icon4);
+		}
+		cMessage.setNet(net);
+		System.out.println(net);
+		cMessageDeco.draw(cMessage, label);
 	}
 	
 	
