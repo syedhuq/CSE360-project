@@ -1,10 +1,11 @@
+package cse360_phase04_rec03_group03;
 /**
-* Companion displays one of four animated facial expressions depending on the user's current question score.
-* Recitation Project 3
-* Completion time: 7 hours
+* Companion displays one of four animated facial expressions and messages depending on the user's current question score.
+* Recitation Project 4
+* Completion time: 2 hours
 *
 * @author Syed Huq
-* @version 3.0
+* @version 4.0
 */
 
 
@@ -37,7 +38,7 @@ public class Companion extends JPanel implements Observer
 		cMessage = new CompanionMessage();
 		cMessageDeco = new CompanionMessageDecorator();
 		
-		// label will be used to display the image
+		// label will be used to display the image and text
 		label = new JLabel();
 		label2 = new JLabel();
 		labelMessage = new JLabel();
@@ -132,35 +133,33 @@ public class Companion extends JPanel implements Observer
 	}
 	public void changeState(int state)
 	{
-		remove(name);
+		remove(name); // get rid of name after initial state is done
 		if(initial)
 		{
 			label2.setIcon(icon2);
 			initial = false;
 		}
 	}// end of changeState()
+	
+	// method that is called whenever the score is changed
 	public void update(Observable o, Object arg)
 	{
-		cc.setTotalCorrect();
-		cc.setTotalIncorrect();
-		cc.setTotalNet();
-		int net = cc.getTotalNet();
+		int net = cc.getTotalNet(); // get user's total net score for our calculations
+		// then set the face appropriately
 		if(net > 0) {
-			label2.setIcon(icon1);
+			label2.setIcon(icon1); // happy if score > 0
 		}
 		else if(net == 0) {
-			label2.setIcon(icon2);
+			label2.setIcon(icon2); // thinking if score = 0
 		}
 		else if(net == -1) {
-			label2.setIcon(icon3);
+			label2.setIcon(icon3); // worried if score = -1
 		}
 		else {
-			label2.setIcon(icon4);
+			label2.setIcon(icon4); // sad if score < -1
 		}
+		// then our decorator stuff for the companion message
 		cMessage.setNet(net);
-		System.out.println(net);
 		cMessageDeco.draw(cMessage, label);
 	}
-	
-	
 }

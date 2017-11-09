@@ -1,3 +1,13 @@
+package cse360_phase04_rec03_group03;
+/**
+* CompanionMessageDecorator implements the Decorator pattern to display Companion messages.
+* Recitation Project 4
+* Completion time: 1 hour
+*
+* @author Syed Huq
+* @version 1.0
+*/
+
 import javax.swing.JLabel;
 
 public class CompanionMessageDecorator {
