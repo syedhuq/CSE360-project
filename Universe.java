@@ -16,8 +16,9 @@ import javax.swing.event.*;
 public class Universe extends JFrame {
 	
 	//Initializing components
-	private JPanel a, c, u, north, south;
-	private Subject b;
+	private JPanel a, b, u, north, south;
+	private Companion c;
+	private ControlCenter cc;
 	private Menu m;
 	private JLabel uL;
 	private JSlider slider;
@@ -33,7 +34,9 @@ public class Universe extends JFrame {
 		//Panel setup
 		a = new Tutor();
 		b = new Assessor();
-		c = new Companion(b);
+		c = new Companion();
+		cc = ControlCenter.ControlCenter();
+		cc.addObserver(c);
 		m = new Menu();
 		u = new JPanel(new GridLayout(1,1));
 		uL = new JLabel("Bryce Turner");

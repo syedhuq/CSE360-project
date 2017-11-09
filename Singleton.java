@@ -25,15 +25,15 @@ class ControlCenter extends Observable{
 	}
 
 	public int getCorrectAnswers (int lessonNumber) {
-		return correctAnswers[lessonNumber];
+		return correctAnswers[lessonNumber-1];
 	}
 
-	public int getInorrectAnswers (int lessonNumber) {
-		return incorrectAnswers[lessonNumber];
+	public int getIncorrectAnswers (int lessonNumber) {
+		return incorrectAnswers[lessonNumber-1];
 	}
 
 	public int getTimeSpent (int lessonNumber) {
-		return timeSpent[lessonNumber];
+		return timeSpent[lessonNumber-1];
 	}
 	
 	public int getTotalCorrect() {
@@ -49,15 +49,17 @@ class ControlCenter extends Observable{
 	}
 	
 	public void setCorrectAnswers (int lessonNumber, int seconds) {
-		correctAnswers[lessonNumber] = seconds;
+		correctAnswers[lessonNumber-1] = seconds;
+		notifyObservers();
 	}
 
 	public void setIncorrectAnswers (int lessonNumber, int seconds) {
-		incorrectAnswers[lessonNumber] = seconds;
+		incorrectAnswers[lessonNumber-1] = seconds;
+		notifyObservers();
 	}
 
 	public void setTimeSpent (int lessonNumber, int seconds) {
-		timeSpent[lessonNumber] = seconds;
+		timeSpent[lessonNumber-1] = seconds;
 	}
 	
 	public void setTotalCorrect() {
@@ -76,6 +78,13 @@ class ControlCenter extends Observable{
 	
 	public void setTotalNet() {
 		totalNet = totalCorrect - totalIncorrect;
+	}
+	public void update() {
+		setTotalCorrect();
+		setTotalIncorrect();
+		setTotalNet();
+		setChanged();
+		notifyObservers();
 	}
 
 }

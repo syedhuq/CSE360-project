@@ -11,23 +11,27 @@
 
 import javax.swing.*;
 import java.awt.event.*;
-
-public class Companion extends JPanel
+import java.util.Observer;
+import java.util.Observable;
+public class Companion extends JPanel implements Observer
 {
 	// Declarations
 	JLabel label, name, label2;
 	ImageIcon icon1, icon2, icon3, icon4;
+	ControlCenter cc;
 	int delay, i, j;
 	boolean initial = true;
 	ActionListener animate;
 	
 	// Constructor
-	public Companion(Subject subj)
+	public Companion()
 	{
-		QuestionObserver answers = new QuestionObserver(subj);
+		//QuestionObserver answers = new QuestionObserver(subj);
 		// my name to be displayed on initial state
 		name = new JLabel("Syed Huq");
 		add(name);
+		cc = ControlCenter.ControlCenter();
+		cc.addObserver(this);
 		
 		// label will be used to display the image
 		label = new JLabel();
@@ -129,27 +133,22 @@ public class Companion extends JPanel
 			initial = false;
 		}
 	}// end of changeState()
-	
-	public class QuestionObserver extends Observer
+	public void update(Observable o, Object arg)
 	{
-		public QuestionObserver(Subject subject)
-		{
-		      this.subject = subject;
-		      this.subject.attach(this);
-		}
-		public void update()
-		{
-			int net = subject.getState();
-			if(net > 0)
-				label2.setIcon(icon1);
-			else if(net == 0)
-				label2.setIcon(icon2);
-			else if(net == -1)
-				label2.setIcon(icon3);
-			else
-				label2.setIcon(icon4);
-			
-		}
-	}// end of nested class QuestionObserver
+		cc.setTotalCorrect();
+		cc.setTotalIncorrect();
+		cc.setTotalNet();
+		int net = cc.getTotalNet();
+		System.out.println("a");
+		if(net > 0)
+			label2.setIcon(icon1);
+		else if(net == 0)
+			label2.setIcon(icon2);
+		else if(net == -1)
+			label2.setIcon(icon3);
+		else
+			label2.setIcon(icon4);
+	}
+	
 	
 }
