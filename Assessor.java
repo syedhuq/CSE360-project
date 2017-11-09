@@ -92,16 +92,19 @@ public class Assessor extends JPanel implements ActionListener, ItemListener {
 		state = changeTo;
 		
 		//change question label to current question
-		add(questionLabel);
+		
 		if (state == 1) {
 			//add drop down menu
+			add(questionLabel);
 			add(dropDownMenu);
 			deco.draw(question1, questionLabel);
+			
 			//questionLabel.setText("Given an object representing a Student, which of these would NOT be a possible method one could call on that object? (2 attempts)");
 		}
 		else
 		if (state == 2) {
-			deco.draw(question1, questionLabel);
+			deco.draw(question2, questionLabel);
+			add(questionLabel);
 			//questionLabel.setText("An operation, or method, must be written with what characteristics? (2 attempts)");
 			//add all check boxes
 			add(checkBox1);
@@ -110,7 +113,8 @@ public class Assessor extends JPanel implements ActionListener, ItemListener {
 		}
 		else
 		if (state == 3) {
-			deco.draw(question1, questionLabel);
+			deco.draw(question3, questionLabel);
+			add(questionLabel);
 			//questionLabel.setText("When a class inherits from another class (other than an interface or abstract class), the inherited class is known as what? (2 attempts)");
 			//add all buttons
 			add(button1);
@@ -119,7 +123,8 @@ public class Assessor extends JPanel implements ActionListener, ItemListener {
 		}
 		else
 		if (state == 4) {
-			deco.draw(question1, questionLabel);
+			deco.draw(question4, questionLabel);
+			add(questionLabel);
 			//questionLabel.setText("Type the extension of the file types that go in a package (no capitals, no punctuation or spaces). (3 attempts)");
 			//add text field
 			add(textField);
